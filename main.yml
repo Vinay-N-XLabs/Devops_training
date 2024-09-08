@@ -1,0 +1,19 @@
+---
+- name: Deploy Web Server
+  hosts: webserver
+  become: yes
+  roles:
+    - webserver
+
+- name: Deploy Application Server
+  hosts: appserver
+  become: yes
+  roles:
+    - appserver
+
+- name: Deploy Database Server
+  hosts: dbserver
+  become: yes
+  roles:
+    - dbserver
+

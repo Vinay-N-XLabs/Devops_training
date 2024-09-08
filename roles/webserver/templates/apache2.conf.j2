@@ -1,0 +1,27 @@
+# /etc/apache2/apache2.conf
+
+ServerRoot "/etc/apache2"
+Listen 80
+
+LoadModule mpm_prefork_module /usr/lib/apache2/modules/mod_mpm_prefork.so
+LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
+LoadModule log_config_module /usr/lib/apache2/modules/mod_log_config.so
+LoadModule status_module /usr/lib/apache2/modules/mod_status.so
+
+<Directory />
+    AllowOverride none
+    Require all denied
+</Directory>
+
+<Directory /var/www/>
+    AllowOverride None
+    Require all granted
+</Directory>
+
+<FilesMatch "\\.cgi$">
+    SetHandler cgi-script
+</FilesMatch>
+
+LogLevel warn
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
