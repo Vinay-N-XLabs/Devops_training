@@ -7,6 +7,8 @@
   apt:
     name: nginx
     state: present
+    # Include handlers
+- import_tasks: handlers/main.yml
 
 - name: Configure Nginx
   template:
@@ -15,12 +17,11 @@
   notify:
     - Restart Nginx
 
-- name: Ensure Nginx is running
-  service:
-    name: nginx
-    state: started
-    enabled: yes
+#- name: Ensure Nginx is running
+ # service:
+  #  name: nginx
+   # state: started
+    #enabled: yes
 
-# Include handlers
-- import_tasks: handlers/main.yml
+
 
